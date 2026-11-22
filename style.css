@@ -148,9 +148,13 @@ h1 em { color: var(--accent); }
 /* ---------- The pointer apostrophe (mouse screens only) ---------- */
 .cursor { position: fixed; left: 0; top: 0; z-index: 70; pointer-events: none; opacity: 0; transition: opacity .3s; }
 .cursor.live { opacity: 1; }
-.cursor svg { display: block; width: 12px; height: 19px; margin: -6px 0 0 8px; fill: var(--accent); transform-origin: 30% 20%; transition: transform .35s var(--ease), fill .3s; }
+/* With a mouse, ours is the only pointer: the native one is hidden everywhere, text fields included. */
+html.own-cursor, html.own-cursor * { cursor: none !important; }
+.cursor svg { display: block; width: 12px; height: 19px; margin: -3px 0 0 -6px; fill: var(--accent); transform-origin: 30% 20%; transition: transform .35s var(--ease), fill .3s; }
 .cursor.big svg { transform: scale(2.1) rotate(-12deg); }
 .cursor.ink svg { fill: var(--ink); }
+.cursor.press svg { transform: scale(.75); }
+.cursor.big.press svg { transform: scale(1.7) rotate(-12deg); }
 
 /* Phones and square screens (the Titan 2 Elite): a little less height per statement. */
 @media (max-width: 860px) {

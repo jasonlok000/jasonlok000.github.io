@@ -11,7 +11,7 @@
 <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
 <meta property="og:image" content="https://everyones-niche.com/assets/og.png">
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 <script>
   // The red intro plays once per visit, and never for people who asked for less motion.
   (() => {
@@ -226,14 +226,18 @@
   const cur = document.querySelector(".cursor");
   if (motion && matchMedia("(hover: hover) and (pointer: fine)").matches) {
     let tx = -100, ty = -100, cx = -100, cy = -100;
+    root.classList.add("own-cursor");
+    addEventListener("pointerdown", () => cur.classList.add("press"));
+    addEventListener("pointerup", () => cur.classList.remove("press"));
     addEventListener("pointermove", e => {
       tx = e.clientX; ty = e.clientY;
       cur.classList.add("live");
       cur.classList.toggle("big", !!e.target.closest("a, button, input, .grid svg"));
       cur.classList.toggle("ink", !!e.target.closest(".close"));
     }, { passive: true });
-    document.addEventListener("pointerleave", () => cur.classList.remove("live"));
-    const loop = () => { cx += (tx - cx) * .22; cy += (ty - cy) * .22; cur.style.transform = `translate(${cx}px, ${cy}px)`; requestAnimationFrame(loop); };
+    document.documentElement.addEventListener("pointerleave", () => cur.classList.remove("live"));
+    addEventListener("blur", () => cur.classList.remove("live"));
+    const loop = () => { cx += (tx - cx) * .55; cy += (ty - cy) * .55; cur.style.transform = `translate(${cx}px, ${cy}px)`; requestAnimationFrame(loop); };
     loop();
   }
 
