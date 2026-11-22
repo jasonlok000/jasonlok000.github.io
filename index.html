@@ -13,12 +13,8 @@
 <meta property="og:image" content="https://everyones-niche.com/assets/og.png">
 <link rel="stylesheet" href="style.css?v=13">
 <script>
-  // The red intro plays once per visit, and never for people who asked for less motion.
-  (() => {
-    let seen = false;
-    try { seen = sessionStorage.getItem("en-intro") === "1"; sessionStorage.setItem("en-intro", "1"); } catch {}
-    if (!seen && !matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("intro");
-  })();
+  // The red intro plays on every load, except for people who asked for less motion.
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("intro");
 </script>
 </head>
 <body>
