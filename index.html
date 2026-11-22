@@ -226,21 +226,25 @@
   const cur = document.querySelector(".cursor");
   if (motion && matchMedia("(hover: hover) and (pointer: fine)").matches) {
     let tx = -100, ty = -100, cx = -100, cy = -100, hovered = null;
-    // Whatever is red under the pointer: the end, a hovered row or button, the lit statement's marker.
+    // Everything red on the page: the end, a hovered row or button, red words, arrows, tags, the room's and the side dots' apostrophes.
     const inkLayer = cur.querySelector(".layer.ink"), close = document.querySelector(".close"), R = 34;
+    const RED = "h1 em, .line em, .brand i, .made-item .go, .made-text .tag, .room.in .grid .dot, .dots a.on .dot, .fly .dot, .progress";
     const redRects = () => {
       const list = [close.getBoundingClientRect()];
       if (hovered) list.push(hovered.getBoundingClientRect());
-      document.querySelectorAll(".line.on em").forEach(m => list.push(m.getBoundingClientRect()));
+      document.querySelectorAll(RED).forEach(el => list.push(el.getBoundingClientRect()));
       return list;
     };
-    // The ink copy shows only where the pointer's box overlaps red, so the apostrophe stays whole across an edge.
+    // The ink copy shows only where the pointer's box overlaps red (a union of every red shape it touches), so the apostrophe stays whole.
     const clipInk = () => {
-      const box = { l: cx - R, t: cy - R, r: cx + R, b: cy + R };
-      const hit = redRects().find(q => q.left < box.r && q.right > box.l && q.top < box.b && q.bottom > box.t);
-      if (!hit) { inkLayer.style.clipPath = "inset(100%)"; return; }
-      const t = Math.max(0, hit.top - box.t), l = Math.max(0, hit.left - box.l), b = Math.max(0, box.b - hit.bottom), rr = Math.max(0, box.r - hit.right);
-      inkLayer.style.clipPath = `inset(${t}px ${rr}px ${b}px ${l}px)`;
+      const bl = cx - R, bt = cy - R, br = cx + R, bb = cy + R;
+      let d = "";
+      for (const q of redRects()) {
+        if (q.width === 0 || q.left >= br || q.right <= bl || q.top >= bb || q.bottom <= bt) continue;
+        const l = Math.max(q.left, bl) - bl, t = Math.max(q.top, bt) - bt, r = Math.min(q.right, br) - bl, b = Math.min(q.bottom, bb) - bt;
+        d += `M${l.toFixed(1)} ${t.toFixed(1)}H${r.toFixed(1)}V${b.toFixed(1)}H${l.toFixed(1)}Z`;
+      }
+      inkLayer.style.clipPath = d ? `path("${d}")` : "inset(100%)";
     };
     root.classList.add("own-cursor");
     addEventListener("pointerdown", () => cur.classList.add("press"));
