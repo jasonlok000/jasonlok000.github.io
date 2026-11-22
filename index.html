@@ -11,25 +11,32 @@
 <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
 <meta property="og:image" content="https://everyones-niche.com/assets/og.png">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <!-- Everyone's Niche: the idea, and nothing else yet (owner, 2026-11-21: manifesto only, bold and punchy, its own look). The mark
-     is an architectural niche with a red apostrophe in it: a niche that is yours, in a wall everyone has. The reversed mark (red
-     ground) closes the page. Words by F. -->
+     is an architectural niche with a red apostrophe in it: a niche that is yours, in a wall everyone has. Mark A (ink block, red
+     apostrophe) on paper; mark E (red ground) closes the page. Words by EN · Words. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="m" viewBox="0 0 64 64"><path class="block" fill-rule="evenodd" d="M8 0h48a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Zm8 64V34a16 16 0 0 1 32 0v30Z"/><path class="dot" d="M32 33.5c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></symbol>
+</svg>
+<div class="progress" aria-hidden="true"></div>
+
 <header class="top wrap">
   <a class="brand" href="./" aria-label="Everyone's Niche">
-    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path class="block" fill-rule="evenodd" d="M8 0h48a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Zm8 64V34a16 16 0 0 1 32 0v30Z"/><path class="dot" d="M32 38c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg>
+    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path class="block" fill-rule="evenodd" d="M8 0h48a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Zm8 64V34a16 16 0 0 1 32 0v30Z"/><path class="dot" d="M32 33.5c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg>
     <span>Everyone<i>’</i>s Niche</span>
   </a>
 </header>
 
 <main>
   <section class="hero wrap">
-    <svg class="hero-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="block" fill-rule="evenodd" d="M8 0h48a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Zm8 64V34a16 16 0 0 1 32 0v30Z"/><path class="dot" d="M32 38c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg>
-    <h1><span>Small enough to ignore.</span> <span><em>Common</em> enough to matter.</span></h1>
-    <p class="sub">We look for what nobody thinks to ask for.</p>
-    <a class="down" href="#manifesto" aria-label="Read on">↓</a>
+    <svg class="hero-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="block" fill-rule="evenodd" d="M8 0h48a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Zm8 64V34a16 16 0 0 1 32 0v30Z"/><path class="dot" d="M32 33.5c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg>
+    <h1 aria-label="Small enough to ignore. Common enough to matter.">
+      <span class="s" aria-hidden="true"><span class="w">Small</span> <span class="w">enough</span> <span class="w">to</span> <span class="w">ignore.</span></span>
+      <span class="s" aria-hidden="true"><span class="w"><em>Common</em></span> <span class="w">enough</span> <span class="w">to</span> <span class="w">matter.</span></span>
+    </h1>
+    <a class="down" href="#manifesto" aria-label="Read on"><span>↓</span></a>
   </section>
 
   <section id="manifesto" class="manifesto wrap">
@@ -42,29 +49,82 @@
     <p class="line">Look around. The room was <em>full.</em></p>
   </section>
 
+  <!-- The room: a niche for everyone. One lights up, then the rest follow. -->
+  <section class="room wrap" aria-hidden="true"><div class="grid"></div></section>
+
   <section class="made wrap" aria-labelledby="made-label">
     <p id="made-label" class="made-label">Made so far</p>
     <a class="made-item" href="titankeys/">
       <img src="assets/titankeys.png" alt="" width="56" height="56">
-      <span><b>TitanKeys</b><span>A keyboard for the Titan 2 Elite, down to the smallest detail.</span></span>
+      <span class="made-text"><b>TitanKeys</b><span>A keyboard for the Titan 2 Elite, down to the smallest detail.</span></span>
       <span class="go" aria-hidden="true">→</span>
     </a>
+    <a class="made-item" href="https://asterionrings.com/">
+      <img src="assets/asterion.svg" alt="" width="56" height="56">
+      <span class="made-text"><b>Asterion</b><span>Titanium rings with a mark that feels like only yours.</span></span>
+      <span class="go" aria-hidden="true">↗</span>
+    </a>
+    <div class="made-item soon">
+      <img src="assets/swiftjobs.png" alt="" width="56" height="56">
+      <span class="made-text"><b>SwiftJobs <em class="tag">In the works</em></b><span>Job hunting, without the grind everyone does alone.</span></span>
+    </div>
   </section>
 
   <section class="close">
-    <svg class="end-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="block" fill-rule="evenodd" d="M8 0h48a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Zm8 64V34a16 16 0 0 1 32 0v30Z"/><path class="dot" d="M32 38c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg>
+    <svg class="end-mark" viewBox="0 0 64 64" aria-hidden="true"><path class="block" fill-rule="evenodd" d="M8 0h48a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Zm8 64V34a16 16 0 0 1 32 0v30Z"/><path class="dot" d="M32 33.5c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg>
     <p class="slogan">Solve a niche <em>everyone</em> has.</p>
+    <!-- Email signup: stays hidden until data-endpoint names the mail service's form address. -->
+    <form class="signup" data-endpoint="" data-field="email" hidden>
+      <p class="signup-lead">Hear when the next one's solved.</p>
+      <div class="signup-row">
+        <input type="email" name="email" required autocomplete="email" placeholder="your@email" aria-label="Email address">
+        <button type="submit">Tell me</button>
+      </div>
+      <p class="signup-note" data-idle="Only news when we make something new. Unsubscribe any time." data-ok="You're in. We'll stay quiet until there's news." data-err="That didn't go through. Please try again in a moment." aria-live="polite">Only news when we make something new. Unsubscribe any time.</p>
+    </form>
   </section>
 </main>
 
 <footer class="wrap">© 2026 Everyone's Niche · <a href="titankeys/privacy/">TitanKeys privacy policy</a></footer>
 
 <script>
-  // Each statement rises in the first time it comes into view.
   (() => {
+    // Each block plays its entrance the first time it comes into view.
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
-      { rootMargin: "0px 0px -15% 0px" });
-    document.querySelectorAll(".line, .made, .slogan, .close").forEach(el => io.observe(el));
+      { rootMargin: "0px 0px -18% 0px" });
+    document.querySelectorAll(".line, .room, .made, .close").forEach(el => io.observe(el));
+
+    // The room: a grid of niches. The one nearest the middle lights first, then the light spreads out from it.
+    const grid = document.querySelector(".grid");
+    const cols = innerWidth < 600 ? 7 : 12, rows = innerWidth < 600 ? 5 : 4;
+    const mid = [Math.floor(cols / 2), Math.floor(rows / 2)];
+    grid.style.setProperty("--cols", cols);
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const d = Math.hypot(c - mid[0], r - mid[1]);
+      const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      s.setAttribute("viewBox", "0 0 64 64");
+      s.innerHTML = '<use href="#m"/>';
+      s.style.setProperty("--d", d === 0 ? "0s" : (0.8 + d * 0.12).toFixed(2) + "s");
+      if (d === 0) s.classList.add("first");
+      grid.appendChild(s);
+    }
+
+    // Email signup: shown only once a mail service is set.
+    const f = document.querySelector(".signup");
+    if (f && f.dataset.endpoint) {
+      f.hidden = false;
+      const note = f.querySelector(".signup-note"), btn = f.querySelector("button");
+      f.addEventListener("submit", async ev => {
+        ev.preventDefault();
+        btn.disabled = true;
+        const body = new FormData();
+        body.append(f.dataset.field || "email", f.querySelector("input").value.trim());
+        try {
+          await fetch(f.dataset.endpoint, { method: "POST", body, mode: "no-cors" });
+          f.classList.add("done"); note.textContent = note.dataset.ok;
+        } catch { note.textContent = note.dataset.err; btn.disabled = false; }
+      });
+    }
   })();
 </script>
 </body>
