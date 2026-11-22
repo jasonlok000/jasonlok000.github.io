@@ -74,7 +74,7 @@ h1 em { color: var(--accent); }
 .down.on-red:hover, .down.on-red:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 
 /* ---------- Statements (manifesto and slogan): words in masks ---------- */
-.wm { display: inline-block; overflow: hidden; vertical-align: top; padding: .06em .03em .14em; margin: -.06em -.03em -.14em; }
+.wm { display: inline-block; overflow: hidden; vertical-align: top; padding: .06em .03em .26em; margin: -.06em -.03em -.26em; }
 .wi { display: inline-block; }
 .line em, .slogan em { display: inline-block; line-height: 1; }
 
@@ -86,7 +86,8 @@ h1 em { color: var(--accent); }
 .line.quote .lt { text-indent: -.42em; }
 .line.quote .lt * { text-indent: 0; }
 .line:nth-child(even) { justify-content: flex-end; text-align: right; }
-.line em { color: var(--accent); padding: .02em .08em .04em; margin: 0 -.04em; border-radius: .1em;
+/* The marker reaches below the baseline far enough to hold g, y and p's tails. */
+.line em { color: var(--accent); padding: .02em .08em .2em; margin: 0 -.04em -.16em; border-radius: .1em;
   background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 100% no-repeat; }
 .line:nth-child(even) em { background-position: 100% 100%; }
 
