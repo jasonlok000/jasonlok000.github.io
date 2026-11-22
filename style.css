@@ -207,9 +207,10 @@ html.own-cursor, html.own-cursor * { cursor: none !important; }
   .grid .dot { fill: rgba(18, 18, 18, .14); transition: fill .5s var(--d); transform-box: fill-box; transform-origin: center; }
   .room.in .grid .block { fill: var(--ink); }
   .room.in .grid .dot { fill: var(--accent); }
-  .room.in .grid svg { animation: pop .6s var(--d) var(--ease) both; }
+  .room.in .grid svg { animation: lit .75s var(--d) var(--ease) both; }
+  @keyframes lit { 0% { transform: scale(1); } 35% { transform: scale(1.28) rotate(-6deg); } 60% { transform: scale(.92) rotate(3deg); } 100% { transform: none; } }
   /* Then they twinkle like stars: slowly, calmly, each on its own clock. */
-  @keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .22; } }
+  @keyframes twinkle { 0%, 100% { opacity: 1; transform: none; } 38% { opacity: .2; transform: scale(.82); } 52% { opacity: 1; transform: scale(1.22) rotate(-8deg); } 64% { transform: scale(.96); } 76% { transform: none; } }
   .room.in .grid .dot { animation: twinkle var(--tw, 6s) var(--twd, 3s) ease-in-out infinite; }
   .room.in .grid .first .dot { animation: settle .8s .1s var(--drop) both, twinkle var(--tw, 6s) var(--twd, 3s) ease-in-out infinite; }
   .room.in .grid svg.rip { animation: rip .7s var(--rd) var(--ease) both; }
