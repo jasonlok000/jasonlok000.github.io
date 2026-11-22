@@ -146,18 +146,9 @@ h1 em { color: var(--accent); }
 .wipe.go .dot { animation: settle .6s .25s var(--drop) both; }
 
 /* ---------- The pointer apostrophe (mouse screens only) ---------- */
-.cursor { position: fixed; left: 0; top: 0; z-index: 70; pointer-events: none; opacity: 0; transition: opacity .3s; }
-.cursor.live { opacity: 1; }
+.cursor { position: fixed; left: 0; top: 0; width: 68px; height: 68px; z-index: 70; pointer-events: none; }
 /* With a mouse, ours is the only pointer: the native one is hidden everywhere, text fields included. */
 html.own-cursor, html.own-cursor * { cursor: none !important; }
-/* Two copies over the same spot: red, and an ink one that JS clips to the part crossing red. Each layer is a 68px box centred on the pointer. */
-.cursor .layer { position: absolute; left: -34px; top: -34px; width: 68px; height: 68px; }
-.cursor .layer.ink { clip-path: inset(100%); }
-.cursor svg { position: absolute; left: 28px; top: 31px; width: 12px; height: 19px; fill: var(--accent); transform-origin: 30% 20%; transition: transform .35s var(--ease); }
-.cursor .ink svg { fill: var(--ink); }
-.cursor.big svg { transform: scale(2.1) rotate(-12deg); }
-.cursor.press svg { transform: scale(.75); }
-.cursor.big.press svg { transform: scale(1.7) rotate(-12deg); }
 
 /* Phones and square screens (the Titan 2 Elite): a little less height per statement. */
 @media (max-width: 860px) {

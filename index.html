@@ -11,7 +11,7 @@
 <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
 <meta property="og:image" content="https://everyones-niche.com/assets/og.png">
-<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="style.css?v=13">
 <script>
   // The red intro plays once per visit, and never for people who asked for less motion.
   (() => {
@@ -105,7 +105,7 @@
   </section>
 </main>
 
-<div class="cursor" aria-hidden="true"><div class="layer red"><svg viewBox="22 30 22 34"><path d="M32 33.5c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg></div><div class="layer ink"><svg viewBox="22 30 22 34"><path d="M32 33.5c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg></div></div>
+<canvas class="cursor" width="68" height="68" aria-hidden="true"></canvas>
 
 <script>
 (() => {
@@ -222,42 +222,76 @@
   }));
   addEventListener("pageshow", e => { if (e.persisted) document.querySelectorAll(".wipe").forEach(w => w.remove()); });
 
-  // A small red apostrophe follows the pointer on screens with a mouse; it grows over things you can press, and turns ink on the red.
+  // A small red apostrophe follows the pointer on screens with a mouse, and grows over things you can press. It is drawn on a canvas
+  // so that exactly the pixels lying over something red turn black: red letters, red apostrophes, red areas, nothing else.
   const cur = document.querySelector(".cursor");
   if (motion && matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    let tx = -100, ty = -100, cx = -100, cy = -100, hovered = null;
-    // Everything red on the page: the end, a hovered row or button, red words, arrows, tags, the room's and the side dots' apostrophes.
-    const inkLayer = cur.querySelector(".layer.ink"), close = document.querySelector(".close"), R = 34;
-    const RED = "h1 em, .line em, .brand i, .made-item .go, .made-text .tag, .room.in .grid .dot, .dots a.on .dot, .fly .dot, .progress";
-    const redRects = () => {
-      const list = [close.getBoundingClientRect()];
-      if (hovered) list.push(hovered.getBoundingClientRect());
-      document.querySelectorAll(RED).forEach(el => list.push(el.getBoundingClientRect()));
-      return list;
+    const B = 68, ctx = cur.getContext("2d"), APOS = new Path2D(DOT), close = document.querySelector(".close");
+    const RED_RGB = "rgb(227, 52, 43)";
+    let dpr = 0, tx = -100, ty = -100, cx = -100, cy = -100, hovered = null, big = false, press = false, k = 1, rot = 0, live = false;
+    const size = () => { if (dpr !== devicePixelRatio) { dpr = devicePixelRatio; cur.width = cur.height = B * dpr; cur.style.width = cur.style.height = B + "px"; } };
+    const hits = (q, bl, bt) => q.width > 0 && q.left < bl + B && q.right > bl && q.top < bt + B && q.bottom > bt;
+    // Red shapes in the pointer's box, drawn as a mask in box coordinates.
+    const mask = (bl, bt) => {
+      const box = (q, rad = 0) => { ctx.setTransform(dpr, 0, 0, dpr, -bl * dpr, -bt * dpr); ctx.beginPath(); ctx.roundRect(q.left, q.top, q.width, q.height, rad); ctx.fill(); };
+      const c = close.getBoundingClientRect(); if (hits(c, bl, bt)) box(c);
+      const bar = document.querySelector(".progress").getBoundingClientRect(); if (hits(bar, bl, bt)) box(bar);
+      if (hovered) { const q = hovered.getBoundingClientRect(); if (hits(q, bl, bt)) box(q, parseFloat(getComputedStyle(hovered).borderRadius) || 0); }
+      document.querySelectorAll(".line.in em").forEach(m => { const q = m.getBoundingClientRect(); if (hits(q, bl, bt)) box(q, parseFloat(getComputedStyle(m).borderRadius) || 0); });
+      // Red letters: drawn with the page's own font, size and spacing, on the page's own baseline.
+      document.querySelectorAll("h1 em, .brand i, .made-item .go, .made-text .tag").forEach(el => {
+        const q = el.getBoundingClientRect(); if (!hits(q, bl, bt)) return;
+        const cs = getComputedStyle(el); if (cs.color !== RED_RGB) return;
+        const r = document.createRange(); r.selectNodeContents(el); const t = r.getBoundingClientRect();
+        ctx.setTransform(dpr, 0, 0, dpr, -bl * dpr, -bt * dpr);
+        ctx.font = `${cs.fontWeight} ${cs.fontSize} Inter`; ctx.letterSpacing = cs.letterSpacing === "normal" ? "0px" : cs.letterSpacing;
+        const text = el.innerText, m = ctx.measureText(text);
+        ctx.fillText(text, t.left, t.top + m.fontBoundingBoxAscent);
+        if (el.classList.contains("tag")) { ctx.lineWidth = parseFloat(cs.borderTopWidth) || 1.5; const w = ctx.lineWidth / 2;
+          ctx.beginPath(); ctx.roundRect(q.left + w, q.top + w, q.width - 2 * w, q.height - 2 * w, q.height / 2); ctx.stroke(); }
+      });
+      // Red apostrophes: the real path, through the element's own transform on screen.
+      document.querySelectorAll(".room.in .grid .dot, .dots a.on .dot, .fly .dot, .room .grid svg.rip .dot").forEach(d => {
+        const q = d.getBoundingClientRect(); if (!hits(q, bl, bt) || getComputedStyle(d).fill !== RED_RGB) return;
+        const m = d.getScreenCTM(); if (!m) return;
+        ctx.setTransform(dpr * m.a, dpr * m.b, dpr * m.c, dpr * m.d, dpr * (m.e - bl), dpr * (m.f - bt));
+        ctx.fill(APOS);
+      });
     };
-    // The ink copy shows only where the pointer's box overlaps red (a union of every red shape it touches), so the apostrophe stays whole.
-    const clipInk = () => {
-      const bl = cx - R, bt = cy - R, br = cx + R, bb = cy + R;
-      let d = "";
-      for (const q of redRects()) {
-        if (q.width === 0 || q.left >= br || q.right <= bl || q.top >= bb || q.bottom <= bt) continue;
-        const l = Math.max(q.left, bl) - bl, t = Math.max(q.top, bt) - bt, r = Math.min(q.right, br) - bl, b = Math.min(q.bottom, bb) - bt;
-        d += `M${l.toFixed(1)} ${t.toFixed(1)}H${r.toFixed(1)}V${b.toFixed(1)}H${l.toFixed(1)}Z`;
-      }
-      inkLayer.style.clipPath = d ? `path("${d}")` : "inset(100%)";
+    // The apostrophe itself: 12 by 19 px, its head just below and left of the pointer's tip, scaled and tilted about its head.
+    const apostrophe = () => {
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.translate(B / 2 - 2.4, B / 2 + 0.8); ctx.rotate(rot); ctx.scale(k, k); ctx.translate(-3.6, -3.8);
+      ctx.scale(12 / 22, 19 / 34); ctx.translate(-22, -30);
+      ctx.fill(APOS);
+    };
+    const draw = () => {
+      size();
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cur.width, cur.height);
+      if (!live) return;
+      const bl = cx - B / 2, bt = cy - B / 2;
+      ctx.globalCompositeOperation = "source-over"; ctx.fillStyle = ctx.strokeStyle = "#000"; mask(bl, bt);
+      ctx.globalCompositeOperation = "source-in"; ctx.fillStyle = "#121212"; apostrophe();
+      ctx.globalCompositeOperation = "destination-over"; ctx.fillStyle = "#E3342B"; apostrophe();
+      ctx.globalCompositeOperation = "source-over";
     };
     root.classList.add("own-cursor");
-    addEventListener("pointerdown", () => cur.classList.add("press"));
-    addEventListener("pointerup", () => cur.classList.remove("press"));
+    addEventListener("pointerdown", () => press = true);
+    addEventListener("pointerup", () => press = false);
     addEventListener("pointermove", e => {
-      tx = e.clientX; ty = e.clientY;
-      cur.classList.add("live");
-      cur.classList.toggle("big", !!e.target.closest("a, button, input, .grid svg"));
+      tx = e.clientX; ty = e.clientY; live = true;
+      big = !!e.target.closest("a, button, input, .grid svg");
       hovered = e.target.closest("a.made-item, .down");
     }, { passive: true });
-    document.documentElement.addEventListener("pointerleave", () => cur.classList.remove("live"));
-    addEventListener("blur", () => cur.classList.remove("live"));
-    const loop = () => { cx += (tx - cx) * .55; cy += (ty - cy) * .55; cur.style.transform = `translate(${cx}px, ${cy}px)`; clipInk(); requestAnimationFrame(loop); };
+    root.addEventListener("pointerleave", () => live = false);
+    addEventListener("blur", () => live = false);
+    const loop = () => {
+      cx += (tx - cx) * .55; cy += (ty - cy) * .55;
+      const kt = (big ? 2.1 : 1) * (press ? .8 : 1), rt = big ? -12 * Math.PI / 180 : 0;
+      k += (kt - k) * .25; rot += (rt - rot) * .25;
+      cur.style.transform = `translate(${(cx - B / 2).toFixed(1)}px, ${(cy - B / 2).toFixed(1)}px)`;
+      draw(); requestAnimationFrame(loop);
+    };
     loop();
   }
 
