@@ -11,7 +11,7 @@
 <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
 <meta property="og:image" content="https://everyones-niche.com/assets/og.png">
-<link rel="stylesheet" href="style.css?v=13">
+<link rel="stylesheet" href="style.css?v=14">
 <script>
   // The red intro plays on every load, except for people who asked for less motion.
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("intro");
@@ -156,6 +156,9 @@
     s.innerHTML = mark();
     s.style.setProperty("--d", d === 0 ? "0s" : (0.8 + d * 0.12).toFixed(2) + "s");
     s.dataset.c = c; s.dataset.r = r;
+    // Each apostrophe twinkles on its own slow clock, starting a while after the room has lit.
+    s.style.setProperty("--tw", (4 + Math.random() * 4).toFixed(2) + "s");
+    s.style.setProperty("--twd", (2.4 + d * 0.12 + Math.random() * 5).toFixed(2) + "s");
     if (d === 0) s.classList.add("first");
     grid.appendChild(s); cells.push(s);
   }
@@ -164,6 +167,7 @@
     cells.forEach(s => {
       s.style.setProperty("--rd", (Math.hypot(s.dataset.c - hit.dataset.c, s.dataset.r - hit.dataset.r) * 0.06).toFixed(2) + "s");
       s.classList.remove("rip"); void s.getBoundingClientRect(); s.classList.add("rip");
+      clearTimeout(s._rip); s._rip = setTimeout(() => s.classList.remove("rip"), 1500);
     });
   });
 

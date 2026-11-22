@@ -208,7 +208,10 @@ html.own-cursor, html.own-cursor * { cursor: none !important; }
   .room.in .grid .block { fill: var(--ink); }
   .room.in .grid .dot { fill: var(--accent); }
   .room.in .grid svg { animation: pop .6s var(--d) var(--ease) both; }
-  .room.in .grid .first .dot { animation: settle .8s .1s var(--drop) both; }
+  /* Then they twinkle like stars: slowly, calmly, each on its own clock. */
+  @keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .22; } }
+  .room.in .grid .dot { animation: twinkle var(--tw, 6s) var(--twd, 3s) ease-in-out infinite; }
+  .room.in .grid .first .dot { animation: settle .8s .1s var(--drop) both, twinkle var(--tw, 6s) var(--twd, 3s) ease-in-out infinite; }
   .room.in .grid svg.rip { animation: rip .7s var(--rd) var(--ease) both; }
   .room.in .grid svg.rip .dot { animation: dotflash .7s var(--rd) both; }
   @media (hover: hover) { .room.in .grid svg:hover .dot { animation: settle .6s var(--drop) both; } }
