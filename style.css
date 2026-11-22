@@ -7,8 +7,8 @@
 html.intro { --intro: 1.35s; }
 
 * { box-sizing: border-box; }
-/* The page snaps gently to each statement; paper above, red below, so pulling past either end shows the right colour. */
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-snap-type: y proximity; background: linear-gradient(var(--paper) 50%, var(--accent) 50%); }
+/* Paper above, red below, so pulling past either end shows the right colour. */
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: linear-gradient(var(--paper) 50%, var(--accent) 50%); }
 body { margin: 0; overflow-x: clip; background: var(--paper); color: var(--ink); font: 500 18px/1.5 Inter, system-ui, sans-serif; }
 ::selection { background: var(--accent); color: var(--paper); }
 a { color: inherit; }
@@ -27,8 +27,8 @@ html.intro-done .curtain { display: none; }
 
 /* ---------- Header: the name, and the dock where the logo lands. ---------- */
 .progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); z-index: 30; pointer-events: none; }
-.top { position: fixed; top: 0; left: 0; right: 0; z-index: 20; padding: 16px 0 14px; transition: background .4s, box-shadow .4s, -webkit-backdrop-filter .4s, backdrop-filter .4s; }
-.top.solid { background: rgba(243, 239, 230, .86); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(18, 18, 18, .08); }
+.top { position: fixed; top: 0; left: 0; right: 0; z-index: 20; padding: 16px 0 14px; background: rgba(243, 239, 230, calc(min(1, var(--e, 0) * 2.2) * .94)); transition: box-shadow .4s; }
+.top.solid { -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(18, 18, 18, .08); }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 18px; letter-spacing: -.01em; }
 .brand-slot { width: 26px; height: 26px; flex: none; }
 /* Until the logo arrives, the name sits where the logo will be, then steps aside to make room. */
@@ -55,7 +55,7 @@ html.ready .fly { visibility: visible; }
 }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 90px; padding-bottom: 60px; scroll-snap-align: start; }
+.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 90px; padding-bottom: 60px; }
 .hero-slot { width: clamp(72px, 12vw, 120px); aspect-ratio: 1; margin-bottom: 28px; }
 h1 { font-weight: 700; font-size: clamp(46px, 9.6vw, 132px); line-height: .98; letter-spacing: -.045em; margin: 0; max-width: 13ch; }
 h1 .s { display: block; }
@@ -72,7 +72,7 @@ h1 em { color: var(--accent); }
 .line em, .slogan em { display: inline-block; line-height: 1; }
 
 .manifesto { padding-top: 4vh; padding-bottom: 6vh; }
-.line { display: flex; align-items: center; min-height: 70svh; margin: 0; scroll-snap-align: center;
+.line { display: flex; align-items: center; min-height: 70svh; margin: 0;
   font-weight: 700; font-size: clamp(34px, 6.4vw, 84px); line-height: 1.06; letter-spacing: -.04em; }
 .line .lt { display: block; max-width: 16ch; }
 .line:nth-child(even) { justify-content: flex-end; text-align: right; }
@@ -81,12 +81,12 @@ h1 em { color: var(--accent); }
 .line:nth-child(even) em { background-position: 100% 100%; }
 
 /* ---------- The room ---------- */
-.room { min-height: 80svh; display: flex; align-items: center; scroll-snap-align: center; padding-top: 6vh; padding-bottom: 6vh; }
+.room { min-height: 80svh; display: flex; align-items: center; padding-top: 6vh; padding-bottom: 6vh; }
 .grid { width: 100%; display: grid; grid-template-columns: repeat(var(--cols, 12), 1fr); gap: clamp(10px, 2.2vw, 22px); }
 .grid svg { width: 100%; height: auto; display: block; transform-origin: 50% 60%; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 
 /* ---------- Made so far ---------- */
-.made { min-height: 70svh; display: flex; flex-direction: column; justify-content: center; scroll-snap-align: center; padding-top: 6vh; padding-bottom: 8vh; }
+.made { min-height: 70svh; display: flex; flex-direction: column; justify-content: center; padding-top: 6vh; padding-bottom: 8vh; }
 .made-label { margin: 0 0 18px; font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .made-item { position: relative; display: flex; align-items: center; gap: 18px; padding: 20px 16px; margin: 0 -16px; border-radius: 18px;
   text-decoration: none; isolation: isolate; overflow: hidden; }
@@ -110,7 +110,7 @@ h1 em { color: var(--accent); }
 
 /* ---------- The end: red, the reversed mark, the slogan, the signup, the footer ---------- */
 .close { position: relative; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 30px;
-  color: var(--ink); padding: 90px 20px 80px; isolation: isolate; scroll-snap-align: start; }
+  color: var(--ink); padding: 90px 20px 80px; isolation: isolate; }
 /* The red is its own layer so it can open like a curtain while the section stays visible to the reveal. */
 .close::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--accent); }
 .end-mark { width: clamp(64px, 9vw, 96px); height: auto; }
@@ -150,9 +150,12 @@ h1 em { color: var(--accent); }
 .cursor.live { opacity: 1; }
 /* With a mouse, ours is the only pointer: the native one is hidden everywhere, text fields included. */
 html.own-cursor, html.own-cursor * { cursor: none !important; }
-.cursor svg { display: block; width: 12px; height: 19px; margin: -3px 0 0 -6px; fill: var(--accent); transform-origin: 30% 20%; transition: transform .35s var(--ease), fill .3s; }
+/* Two copies over the same spot: red, and an ink one that JS clips to the part crossing red. Each layer is a 68px box centred on the pointer. */
+.cursor .layer { position: absolute; left: -34px; top: -34px; width: 68px; height: 68px; }
+.cursor .layer.ink { clip-path: inset(100%); }
+.cursor svg { position: absolute; left: 28px; top: 31px; width: 12px; height: 19px; fill: var(--accent); transform-origin: 30% 20%; transition: transform .35s var(--ease); }
+.cursor .ink svg { fill: var(--ink); }
 .cursor.big svg { transform: scale(2.1) rotate(-12deg); }
-.cursor.ink svg { fill: var(--ink); }
 .cursor.press svg { transform: scale(.75); }
 .cursor.big.press svg { transform: scale(1.7) rotate(-12deg); }
 
