@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found · Everyone's Niche</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#E3342B">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+<style>
+  @font-face { font-family: Inter; src: url(/assets/Inter-Bold.otf) format("opentype"); font-weight: 700; font-display: swap; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { display: grid; place-items: center; text-align: center; padding: 24px; background: #E3342B; color: #121212; font: 700 18px/1.4 Inter, system-ui, sans-serif; }
+  svg { width: 84px; height: 84px; overflow: visible; }
+  .block { fill: #F3EFE6; } .dot { fill: #121212; transform-box: fill-box; transform-origin: center; }
+  h1 { font-size: clamp(32px, 6vw, 64px); letter-spacing: -.04em; line-height: 1.05; margin: 28px 0 24px; max-width: 14ch; }
+  a { display: inline-block; padding: 12px 22px; border-radius: 999px; background: #121212; color: #F3EFE6; text-decoration: none; transition: transform .2s; }
+  a:hover { transform: scale(1.04); }
+  @media (prefers-reduced-motion: no-preference) {
+    /* The apostrophe has fallen out of its niche. */
+    @keyframes fall { 0% { transform: none; } 40% { transform: translateY(8%) rotate(8deg); } 100% { transform: translate(18%, 70%) rotate(70deg); opacity: .0; } }
+    .dot { animation: fall 1.4s .5s cubic-bezier(.5, 0, .7, 1) both; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <svg viewBox="0 0 64 64" aria-hidden="true"><path class="block" fill-rule="evenodd" d="M8 0h48a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Zm8 64V34a16 16 0 0 1 32 0v30Z"/><path class="dot" d="M32 33.5c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg>
+  <h1>Nothing here. Not even a niche.</h1>
+  <a href="/">Back home</a>
+</main>
+</body>
+</html>

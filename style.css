@@ -62,9 +62,16 @@ h1 .s { display: block; }
 h1 .w { display: inline-block; }
 h1 em, .line em, .slogan em { font-style: normal; }
 h1 em { color: var(--accent); }
-.down { display: inline-grid; place-items: center; width: 52px; height: 52px; margin-top: 52px; border: 2px solid var(--ink); border-radius: 50%;
+/* The arrow stays on screen, bottom left, all the way down. */
+.down { position: fixed; z-index: 19; left: max(20px, calc((100vw - 1120px) / 2 + 20px)); bottom: max(22px, env(safe-area-inset-bottom));
+  display: grid; place-items: center; width: 52px; height: 52px; border: 2px solid var(--ink); border-radius: 50%; background: rgba(243, 239, 230, .9); color: var(--ink);
   font-size: 22px; text-decoration: none; transition: background .3s, color .3s, border-color .3s; }
+.down span { display: block; transition: rotate .5s var(--ease); }
+.down.up span { rotate: 180deg; }
 .down:hover, .down:focus-visible { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+/* On the red: ink ring, and an ink fill on hover. */
+.down.on-red { background: transparent; }
+.down.on-red:hover, .down.on-red:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 
 /* ---------- Statements (manifesto and slogan): words in masks ---------- */
 .wm { display: inline-block; overflow: hidden; vertical-align: top; padding: .06em .03em .14em; margin: -.06em -.03em -.14em; }

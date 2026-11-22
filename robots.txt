@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://everyones-niche.com/sitemap.xml

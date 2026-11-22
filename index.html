@@ -3,15 +3,80 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Everyone's Niche</title>
-<meta name="description" content="Solve a niche everyone has.">
+<title>Everyone's Niche · Solve a niche everyone has</title>
+<meta name="description" content="We find the small problems almost everyone lives with but nobody names, and solve them properly. Small enough to ignore. Common enough to matter.">
+<link rel="canonical" href="https://everyones-niche.com/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Everyone's Niche">
 <meta name="theme-color" content="#F3EFE6">
-<meta property="og:title" content="Everyone's Niche">
-<meta property="og:description" content="Solve a niche everyone has.">
-<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta name="color-scheme" content="light">
+
+<!-- Sharing: Open Graph (Facebook, LinkedIn, Discord, iMessage, WhatsApp, Slack) and X / Twitter. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Everyone's Niche">
+<meta property="og:url" content="https://everyones-niche.com/">
+<meta property="og:title" content="Everyone's Niche · Solve a niche everyone has">
+<meta property="og:description" content="We find the small problems almost everyone lives with but nobody names, and solve them properly. Small enough to ignore. Common enough to matter.">
+<meta property="og:locale" content="en_CA">
 <meta property="og:image" content="https://everyones-niche.com/assets/og.png">
-<link rel="stylesheet" href="style.css?v=15">
+<meta property="og:image:secure_url" content="https://everyones-niche.com/assets/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Everyone's Niche logo, &quot;Small enough to ignore. Common enough to matter.&quot; and &quot;Solve a niche everyone has.&quot;">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Everyone's Niche · Solve a niche everyone has">
+<meta name="twitter:description" content="We find the small problems almost everyone lives with but nobody names, and solve them properly. Small enough to ignore. Common enough to matter.">
+<meta name="twitter:image" content="https://everyones-niche.com/assets/og.png">
+<meta name="twitter:image:alt" content="Everyone's Niche logo, &quot;Small enough to ignore. Common enough to matter.&quot; and &quot;Solve a niche everyone has.&quot;">
+
+<!-- Icons: the main mark in tabs, the reversed mark on home screens. -->
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preload" href="assets/Inter-Bold.otf" as="font" type="font/otf" crossorigin>
+<link rel="stylesheet" href="style.css?v=17">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://everyones-niche.com/#org",
+      "name": "Everyone's Niche",
+      "url": "https://everyones-niche.com/",
+      "logo": "https://everyones-niche.com/assets/icon-512.png",
+      "slogan": "Solve a niche everyone has.",
+      "description": "We find the small problems almost everyone lives with but nobody names, and solve them properly."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://everyones-niche.com/#site",
+      "url": "https://everyones-niche.com/",
+      "name": "Everyone's Niche",
+      "publisher": { "@id": "https://everyones-niche.com/#org" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "ItemList",
+      "name": "Made so far",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "TitanKeys", "url": "https://everyones-niche.com/titankeys/" },
+        { "@type": "ListItem", "position": 2, "name": "Asterion", "url": "https://asterionrings.com/" }
+      ]
+    }
+  ]
+}
+</script>
+<noscript><style>
+  /* Without JavaScript nothing waits for a reveal: everything is simply there. */
+  .wi { transform: none !important; } .line .lt { opacity: 1 !important; } .line em { background-size: 100% 100% !important; color: var(--paper) !important; }
+  .made > * { opacity: 1 !important; transform: none !important; } .close::before { clip-path: none !important; }
+  .signup, .close footer, .end-mark { opacity: 1 !important; transform: none !important; }
+  .grid { display: none; } .hero-slot { background: url(assets/mark.svg) center / contain no-repeat; } .brand-name { opacity: 1 !important; transform: none !important; }
+</style></noscript>
 <script>
   // The red intro plays on every load, except for people who asked for less motion.
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("intro");
@@ -26,6 +91,8 @@
   <svg viewBox="0 0 64 64"><path class="block" fill-rule="evenodd" d="M8 0h48a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Zm8 64V34a16 16 0 0 1 32 0v30Z"/><path class="dot" d="M32 33.5c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg>
 </div>
 <div class="progress" aria-hidden="true"></div>
+<!-- One arrow for the whole page: each tap goes to the next part; at the end it turns round and goes back to the top. -->
+<a class="down" href="#manifesto" aria-label="Next"><span>↓</span></a>
 
 <!-- The one logo of the first screen. It starts in the hero and lands in the header. -->
 <svg class="fly" viewBox="0 0 64 64" aria-hidden="true"><path class="block" fill-rule="evenodd" d="M8 0h48a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8H8a8 8 0 0 1-8-8V8a8 8 0 0 1 8-8Zm8 64V34a16 16 0 0 1 32 0v30Z"/><path class="dot" d="M32 33.5c5.5 0 9 3.5 9 9 0 10-6.5 16.5-13 19.5l-2.6-3.8c3.6-2.2 5.6-5.2 6.4-8.8-4.6-.3-7.8-3.6-7.8-7.9 0-4.6 3.5-8 8-8Z"/></svg>
@@ -51,7 +118,6 @@
       <span class="s" aria-hidden="true"><span class="w" style="--i:0">Small</span> <span class="w" style="--i:1">enough</span> <span class="w" style="--i:2">to</span> <span class="w" style="--i:3">ignore.</span></span>
       <span class="s" aria-hidden="true"><span class="w" style="--i:5"><em>Common</em></span> <span class="w" style="--i:6">enough</span> <span class="w" style="--i:7">to</span> <span class="w" style="--i:8">matter.</span></span>
     </h1>
-    <a class="down" href="#manifesto" aria-label="Read on"><span>↓</span></a>
   </section>
 
   <section id="manifesto" class="manifesto wrap" data-part="1">
@@ -291,6 +357,25 @@
     };
     loop();
   }
+
+  // The arrow: the next part below the middle of the screen, or back to the top once the end is in view.
+  const down = document.querySelector(".down");
+  const stops = [...document.querySelectorAll(".line, .room, .made, .close")];
+  const endZone = () => close.getBoundingClientRect().top < innerHeight * 0.5;
+  const close = document.querySelector(".close");
+  const arrowState = () => { const up = endZone(); down.classList.toggle("up", up); down.setAttribute("aria-label", up ? "Back to top" : "Next");
+    down.classList.toggle("on-red", close.getBoundingClientRect().top < innerHeight - 60); };
+  addEventListener("scroll", () => requestAnimationFrame(arrowState), { passive: true });
+  arrowState();
+  down.addEventListener("click", e => {
+    e.preventDefault();
+    if (endZone()) { scrollTo({ top: 0, behavior: motion ? "smooth" : "auto" }); return; }
+    const next = stops.find(el => { const q = el.getBoundingClientRect(); return q.top + q.height / 2 > innerHeight * 0.62; });
+    if (!next) return;
+    const q = next.getBoundingClientRect();
+    const y = next === close ? scrollY + q.top : scrollY + q.top + q.height / 2 - innerHeight / 2;
+    scrollTo({ top: Math.max(0, y), behavior: motion ? "smooth" : "auto" });
+  });
 
   // Email signup: the address goes to our own small Cloudflare worker, which keeps the address and the time, nothing else.
   const f = document.querySelector(".signup");
